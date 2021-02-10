@@ -32,10 +32,17 @@ class _MyHomePageState extends State<MyHomePage> {
   @override
   void initState() {
     super.initState();
+    setHelper();
+  }
+
+  setHelper() async {
     print("sharedPreferencesHelper1");
-    SharedPreferencesHelper s1 = SharedPreferencesHelper.instance;
+    SharedPreferencesHelper s1 = await SharedPreferencesHelper.create("1");
     print("sharedPreferencesHelper2");
-    SharedPreferencesHelper s2 = SharedPreferencesHelper.instance;
+    SharedPreferencesHelper s2 = await SharedPreferencesHelper.create("2");
+    s2.secret = "Levent";
+    s2.secret = "Akrep";
+    print(s2.secret);
   }
 
   @override

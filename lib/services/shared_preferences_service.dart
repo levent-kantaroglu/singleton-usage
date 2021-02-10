@@ -1,9 +1,9 @@
 import 'package:shared_preferences/shared_preferences.dart';
 
 class SharedPreferencesHelper {
-  SharedPreferences _sharedPreferences;
+  static SharedPreferences _sharedPreferences;
 
-  _createSharedPreferencesInstance() async {
+  Future _createSharedPreferencesInstance() async {
     if (_sharedPreferences == null) {
       print("getInstance");
       _sharedPreferences = await SharedPreferences.getInstance();
@@ -11,9 +11,22 @@ class SharedPreferencesHelper {
     return _sharedPreferences;
   }
 
-  SharedPreferencesHelper._() {
-    _createSharedPreferencesInstance();
+  SharedPreferencesHelper._();
+
+  static Future<SharedPreferencesHelper> create(index) async {
+    SharedPreferencesHelper sharedPreferencesHelper =
+        SharedPreferencesHelper._();
+    await sharedPreferencesHelper._createSharedPreferencesInstance();
+
+    return sharedPreferencesHelper;
   }
 
-  static SharedPreferencesHelper instance = SharedPreferencesHelper._();
+  // methods
+  set secret(value) {
+    _sharedPreferences.setString("secret", value);
+  }
+
+  String get secret {
+    return _sharedPreferences.getString("secret") ?? "";
+  }
 }
