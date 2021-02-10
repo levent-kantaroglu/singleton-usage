@@ -5,7 +5,7 @@ class SharedPreferencesHelper {
 
   Future _createSharedPreferencesInstance() async {
     if (_sharedPreferences == null) {
-      print("getInstance");
+      print("get SharedPreferences Instance");
       _sharedPreferences = await SharedPreferences.getInstance();
     }
     return _sharedPreferences;
@@ -17,7 +17,6 @@ class SharedPreferencesHelper {
     SharedPreferencesHelper sharedPreferencesHelper =
         SharedPreferencesHelper._();
     await sharedPreferencesHelper._createSharedPreferencesInstance();
-
     return sharedPreferencesHelper;
   }
 
