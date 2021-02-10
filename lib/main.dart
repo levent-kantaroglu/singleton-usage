@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:singleton_usage/services/shared_preferences_service.dart';
 
 void main() {
   runApp(MyApp());
@@ -28,7 +29,14 @@ class MyHomePage extends StatefulWidget {
 }
 
 class _MyHomePageState extends State<MyHomePage> {
-  void _incrementCounter() {}
+  @override
+  void initState() {
+    super.initState();
+    print("sharedPreferencesHelper1");
+    SharedPreferencesHelper s1 = SharedPreferencesHelper.instance;
+    print("sharedPreferencesHelper2");
+    SharedPreferencesHelper s2 = SharedPreferencesHelper.instance;
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -41,10 +49,6 @@ class _MyHomePageState extends State<MyHomePage> {
           mainAxisAlignment: MainAxisAlignment.center,
           children: <Widget>[],
         ),
-      ),
-      floatingActionButton: FloatingActionButton(
-        onPressed: _incrementCounter,
-        child: Icon(Icons.add),
       ),
     );
   }
